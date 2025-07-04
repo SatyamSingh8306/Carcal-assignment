@@ -1,0 +1,8 @@
+#environment variable
+.env
+
+#cache 
+__pycache__/
+
+#virtual environment
+project
