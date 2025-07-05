@@ -7,6 +7,7 @@ A FastAPI-based service that uses AI agents to search for and provide Wimbledon 
 - AI-powered data retrieval using LangChain agents
 - Web search integration via Tavily Search API
 - LLM processing with Groq for data formatting
+- LangSmith integration for comprehensive logging and monitoring
 - Type-safe request/response models (Pydantic)
 - Modular project structure
 - Environment-based configuration
@@ -45,6 +46,12 @@ The application uses a sophisticated AI agent workflow to retrieve and format Wi
 - **Format**: Consistent JSON response structure
 - **Error Handling**: Graceful handling of missing or invalid data
 
+### 5. **Logging and Monitoring (LangSmith)**
+- **Tracing**: All LLM operations are automatically traced and logged
+- **Monitoring**: Real-time visibility into agent performance and LLM interactions
+- **Debugging**: Detailed logs for troubleshooting and optimization
+- **Analytics**: Performance metrics and usage analytics available in LangSmith dashboard
+
 ## Setup
 
 1. **Clone the repository:**
@@ -74,11 +81,20 @@ The application uses a sophisticated AI agent workflow to retrieve and format Wi
      
      # Tavily Search API Configuration
      TAVILY_API_KEY=your_actual_tavily_api_key
+     
+     # LangSmith Configuration (Optional - for logging and monitoring)
+     LANGSMITH_TRACING=true
+     LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+     LANGSMITH_API_KEY=""
+     LANGSMITH_PROJECT=""
      ```
    
    **Required API Keys:**
    - **Groq API Key**: Get from [Groq Console](https://console.groq.com/)
    - **Tavily API Key**: Get from [Tavily AI](https://tavily.com/)
+   
+   **Optional API Keys:**
+   - **LangSmith API Key**: Get from [LangSmith](https://smith.langchain.com/) for comprehensive logging and monitoring of LLM operations
 
 ## Running the Application
 
