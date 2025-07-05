@@ -4,3 +4,8 @@ python-dotenv
 pytest
 httpx
 pydantic 
+langchain
+langchain-groq
+langchain-core
+langchain-community
+langsmith
