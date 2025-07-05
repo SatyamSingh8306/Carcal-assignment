@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import Optional
 
 class WimbledonQuery(BaseModel):
     year : int = Field(description="The year for which you want result")
@@ -6,11 +7,11 @@ class WimbledonQuery(BaseModel):
 
 class WimbledonResult(BaseModel):
     year: int = Field(..., description="The year of the final match")
-    champion: str = Field(..., description="The champion of the tournament")
-    runner_up: str = Field(..., description="The runner-up of the tournament")
-    score: str = Field(..., description="The full scoreline of the final match")
-    sets: int = Field(..., description="Total number of sets played in the final")
-    tiebreak: bool = Field(..., description="Indicates whether a tiebreak occurred in any set")
+    champion: Optional[str] = Field(default=None, description="The champion of the tournament")
+    runner_up: Optional[str] = Field(default=None, description="The runner-up of the tournament")
+    score: Optional[str] = Field(default=None, description="The full scoreline of the final match")
+    sets: int = Field(default=0, description="Total number of sets played in the final")
+    tiebreak: bool = Field(default=False, description="Indicates whether a tiebreak occurred in any set")
 
 
 

@@ -13,4 +13,4 @@ async def get_wimbledon_final(year: int = Query(..., description="The year for w
     if not result:
         logger.warning(f"No Wimbledon final data found for year {year}")
         raise HTTPException(status_code=404, detail=f"No Wimbledon final data found for year {year}")
-    return {"year": year, **result}
+    return result

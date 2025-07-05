@@ -1,29 +1,21 @@
 from typing import Optional, Dict, Any
+from app.services.agent import agent, _llm
+from app.services.promtps import format_prompt, prompt
+from app.types.response import WimbledonResult
 
-wimbledon_finals = {
-    2021: {
-        "champion": "Novak Djokovic",
-        "runner_up": "Matteo Berrettini",
-        "score": "6–7(4–7), 6–4, 6–4, 6–3",
-        "sets": 4,
-        "tiebreak": True
-    },
-    2022: {
-        "champion": "Novak Djokovic",
-        "runner_up": "Nick Kyrgios",
-        "score": "4–6, 6–3, 6–4, 7–6(7–3)",
-        "sets": 4,
-        "tiebreak": True
-    }
-    # Add more years...
-}
+_agent_chain = prompt | agent
+_llm = format_prompt |  _llm.with_structured_output(WimbledonResult)
 
 """Connection for Databse"""
 class WimbledonDataSource:
-    """Stub for a real data source (DB/API)."""
+    """Agents are checking online and formating the result"""
     def get_final(self, year: int) -> Optional[Dict[str, Any]]:
-        # TODO: Replace with DB/API call
-        return wimbledon_finals.get(year)
+        # Searching and creating the required format
+
+        result = _agent_chain.invoke({"years" : year})
+        ans = _llm.invoke({"raw_data" : result})
+        
+        return ans
 
 # Singleton instance for use in routes
 wimbledon_data_source = WimbledonDataSource()
